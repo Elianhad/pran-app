@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { supabase } from '@/utils/supabaseClient';
 import {
   AppBar,
   ClickAwayListener,
@@ -25,24 +24,10 @@ const darkTheme = createTheme({
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [user, setUser] = useState({})
-  const router = useRouter()
   
   const handleClickSideBar = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event, session)
-      
-      if (!session) router.replace('/')
-      
-    }) 
-    return () => {
-
-    }
-  }, [])
-
 
   return (
     <ThemeProvider theme={darkTheme}>

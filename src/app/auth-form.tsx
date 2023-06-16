@@ -26,7 +26,7 @@ export default function AuthForm() {
   const handleSubmitLogin = async(event:FormEvent) => {
     event.preventDefault()
     setError(false)
-    const { data: user, error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data: user, error } = await supabase.auth.signInWithPassword({ email, password})
     console.log({'submit': 'login','user': user, 'error': error})
     if (error) {
       setError(true)
